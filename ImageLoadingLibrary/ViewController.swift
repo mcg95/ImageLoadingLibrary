@@ -41,10 +41,29 @@ struct profileImage: Decodable{
 
 class ViewController: UIViewController {
 
+    static let cache = NSCache<NSString, UIImage>()
+
+    @IBOutlet weak var testLbl: UILabel!
+    
+    @IBAction func refreshBtn(_ sender: Any) {
+        fetchJSON()
+        print("Refreshed!!!")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        fetchJSON()
+       
+       
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    
+    func fetchJSON(){
         let jsonURL = "https://pastebin.com/raw/wgkJgazE"
         
         guard let url = URL(string: jsonURL) else {
@@ -61,21 +80,53 @@ class ViewController: UIViewController {
                 let json = try JSONDecoder().decode([ImageKit].self, from: data)
                 for imageURL in json{
                     print(imageURL.urls.small)
+                    self.getImage(withURL: URL(string: imageURL.urls.small)!, completion: { (image) in
+                        print(image?.ciImage)
+                    })
                 }
             }
             catch{
                 print(error)
             }
-        
             
-        }.resume()
+            
+            }.resume()
+        
     }
+     func downloadImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
+        let downloadTask = URLSession.shared.dataTask(with: url) { (data, responseURL, err) in
+            var downloadedImage:UIImage?
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+            if let data = data{
+                downloadedImage = UIImage(data: data)
+                
+
+            }
+            if downloadedImage != nil{
+ ViewController.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+            }
+            
+            DispatchQueue.main.async {
+               // completion(downloadedImage)
+            }
+        }
+        downloadTask.resume()
     }
+    func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
+        if let image = ViewController.cache.object(forKey: url.absoluteString as NSString){
+            DispatchQueue.main.async {
+                self.testLbl.text = "Image Loaded from Cache"
+            }
+            completion(image)
 
+        }else{
+            downloadImage(withURL: url, completion: completion)
+            DispatchQueue.main.async {
+                self.testLbl.text = "Image Loaded from Web"
 
+            }
+        }
+    }
+    
 }
 
