@@ -11,7 +11,7 @@ import UIKit
 struct ImageKit: Decodable{
 //    let profileImages: [profileImage]
     let urls: userImageURLS
-
+    let user: userDetails
   
 }
 
@@ -32,10 +32,15 @@ struct userImageURLS:Decodable{
         case thumbURL = "thumb"
     }*/
 }
+struct userDetails: Decodable{
+    let profile_image: profileImage
+
+        
+}
 struct profileImage: Decodable{
-    let profileImageSmlURL: String
-    let profileImageMedURL: String
-    let profileImageLrgURL: String
+    let small: String
+    let medium: String
+    let large: String
     
 }
 
@@ -77,9 +82,12 @@ class ViewController: UIViewController {
             }
             
             do{
-                let json = try JSONDecoder().decode([ImageKit].self, from: data)
+                let decoder = JSONDecoder()
+              //  decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let json = try decoder.decode([ImageKit].self, from: data)
                 for imageURL in json{
-                    print(imageURL.urls.small)
+                    print("User Image: ", imageURL.urls.small)
+                    print("Profile Image: ",imageURL.user.profile_image.medium)
                     self.getImage(withURL: URL(string: imageURL.urls.small)!, completion: { (image) in
                         print(image?.ciImage)
                     })
