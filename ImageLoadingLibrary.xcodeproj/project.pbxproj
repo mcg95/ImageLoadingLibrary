@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7155132420D0671200AFF98B /* JSONImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132320D0671200AFF98B /* JSONImageLoadService.swift */; };
+		7155132620D1275A00AFF98B /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132520D1275A00AFF98B /* JSONStructure.swift */; };
 		717A4F7120CF7B2900B44878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717A4F7020CF7B2900B44878 /* AppDelegate.swift */; };
 		717A4F7320CF7B2900B44878 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717A4F7220CF7B2900B44878 /* ViewController.swift */; };
 		717A4F7620CF7B2900B44878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717A4F7420CF7B2900B44878 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		7155132320D0671200AFF98B /* JSONImageLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONImageLoadService.swift; sourceTree = "<group>"; };
+		7155132520D1275A00AFF98B /* JSONStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructure.swift; sourceTree = "<group>"; };
 		717A4F6D20CF7B2900B44878 /* ImageLoadingLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoadingLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		717A4F7020CF7B2900B44878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		717A4F7220CF7B2900B44878 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				717A4F7F20CF7B2D00B44878 /* Info.plist */,
 				717A4F7720CF7B2900B44878 /* ImageLoadingLibrary.xcdatamodeld */,
 				7155132320D0671200AFF98B /* JSONImageLoadService.swift */,
+				7155132520D1275A00AFF98B /* JSONStructure.swift */,
 			);
 			path = ImageLoadingLibrary;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				717A4F7920CF7B2900B44878 /* ImageLoadingLibrary.xcdatamodeld in Sources */,
 				717A4F7120CF7B2900B44878 /* AppDelegate.swift in Sources */,
 				7155132420D0671200AFF98B /* JSONImageLoadService.swift in Sources */,
+				7155132620D1275A00AFF98B /* JSONStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
