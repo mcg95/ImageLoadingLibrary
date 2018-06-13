@@ -62,7 +62,7 @@ class JSONImageLoadService {
                 
             }
             if downloadedImage != nil{
-                ViewController.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+                JSONImageLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
             }
             
             DispatchQueue.main.async {
@@ -74,7 +74,7 @@ class JSONImageLoadService {
     
     
     func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
-        if let image = ViewController.cache.object(forKey: url.absoluteString as NSString){
+        if let image = JSONImageLoadService.cache.object(forKey: url.absoluteString as NSString){
             DispatchQueue.main.async {
                 self.StatusMessage = "0"
             }
