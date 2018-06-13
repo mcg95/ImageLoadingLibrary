@@ -16,9 +16,10 @@ class JSONImageLoadService {
     
     var LoadedLocation = ""
     var StatusMessage = ""
-    var jsonObj: [ImageKit]? = nil
+    var jsonObj: [jsonRoot]? = nil
     
-    func getJsonObj() -> [ImageKit]{
+    func getJsonObj() -> [jsonRoot]{
+      
         return jsonObj!
     }
     
@@ -38,7 +39,7 @@ class JSONImageLoadService {
             do{
                 let decoder = JSONDecoder()
                 //  decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let json = try decoder.decode([ImageKit].self, from: data)
+                let json = try decoder.decode([jsonRoot].self, from: data)
                 self.jsonObj = json
                 
             }
@@ -75,14 +76,14 @@ class JSONImageLoadService {
     func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
         if let image = ViewController.cache.object(forKey: url.absoluteString as NSString){
             DispatchQueue.main.async {
-                self.StatusMessage = "Image Loaded from Cache!"
+                self.StatusMessage = "0"
             }
             completion(image)
             
         }else{
             downloadImage(withURL: url, completion: completion)
             DispatchQueue.main.async {
-                self.StatusMessage = "Image Loaded from Web!"
+                self.StatusMessage = "1"
             }
         }
     }
@@ -91,11 +92,11 @@ class JSONImageLoadService {
     func returnLoadedFrom() -> (String){
         var loadedLocation = ""
         let statusMessage = StatusMessage
-        if statusMessage == "Image Loaded from Web!"{
+        if statusMessage == "1"{
             
             loadedLocation = "Image Loaded from Web!"
             
-        }else if statusMessage == "Image Loaded from Cache!"{
+        }else if statusMessage == "0"{
             loadedLocation = "Image Loaded from Cache!"
             
         }

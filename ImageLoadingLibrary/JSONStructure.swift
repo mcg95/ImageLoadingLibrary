@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ImageKit: Decodable{
+struct jsonRoot: Decodable{
     let urls: userImageURLS
     let user: userDetails
     

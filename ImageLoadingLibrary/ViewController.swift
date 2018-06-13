@@ -7,52 +7,34 @@
 //
 
 import UIKit
-/*
-struct ImageKit: Decodable{
-    let urls: userImageURLS
-    let user: userDetails
-  
-}
 
-struct userImageURLS:Decodable{
-    
-    let raw: String
-    let full: String
-    let regular: String
-    let small: String
-    let thumb: String
-    
-}
-struct userDetails: Decodable{
-    let profile_image: profileImage
-
-        
-}
-struct profileImage: Decodable{
-    let small: String
-    let medium: String
-    let large: String
-    
-}
-*/
 class ViewController: UIViewController {
 
-    @IBOutlet weak var testImageView: UIImageView!
     static let cache = NSCache<NSString, UIImage>()
     let JSONImageService = JSONImageLoadService()
 
+    
+    @IBAction func removeImageBtn(_ sender: Any) {
+        testImageView.image = nil
+        testLbl.text = ""
+    }
+    
+    @IBOutlet weak var testImageView: UIImageView!
+   
     @IBOutlet weak var testLbl: UILabel!
     
     @IBAction func refreshBtn(_ sender: Any) {
-        JSONImageService.fetchJSON(jsonURL: "https://pastebin.com/raw/wgkJgazE")
-        print("Refreshed!!!")
         testLbl.text = JSONImageService.returnLoadedFrom()
         loadImagetoView()
-        
+        print("Refreshed!!!")
+
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        JSONImageService.fetchJSON(jsonURL: "https://pastebin.com/raw/wgkJgazE")
+
         
     }
 
