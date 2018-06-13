@@ -16,11 +16,11 @@ class JSONImageLoadService {
     
     var LoadedLocation = ""
     var StatusMessage = ""
-    var jsonObj: [jsonRoot]? = nil
+    var jsonObj: [jsonRoot] = []
 
     func getJsonObj() -> [jsonRoot]{
       
-        return jsonObj!
+        return jsonObj
     }
     
     func setCacheSize(noOfObj: Int){
@@ -38,20 +38,25 @@ class JSONImageLoadService {
             guard let data = data else {
                 return
             }
-            
+            DispatchQueue.global(qos: .userInitiated).async {
             do{
                 let decoder = JSONDecoder()
                 //  decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let json = try decoder.decode([jsonRoot].self, from: data)
-                self.jsonObj = json
+                
+                    let json = try decoder.decode([jsonRoot].self, from: data)
+                    self.jsonObj = json
+                
+               
+                
                 
             }
             catch{
                 print(error)
             }
             
-            
+            }
             }.resume()
+        
         
     }
     
@@ -75,6 +80,7 @@ class JSONImageLoadService {
         downloadTask.resume()
     }
     
+   
     
     func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
         if let image = JSONImageLoadService.cache.object(forKey: url.absoluteString as NSString){
@@ -118,6 +124,7 @@ class JSONImageLoadService {
             
         }
     }
+
 
 }
 

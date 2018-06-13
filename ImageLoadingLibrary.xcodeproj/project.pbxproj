@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		7155132420D0671200AFF98B /* JSONImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132320D0671200AFF98B /* JSONImageLoadService.swift */; };
 		7155132620D1275A00AFF98B /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132520D1275A00AFF98B /* JSONStructure.swift */; };
+		7155132820D19AEF00AFF98B /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132720D19AEF00AFF98B /* CustomCollectionViewCell.swift */; };
+		7155132A20D1B94900AFF98B /* DGElasticPullToRefresh in Resources */ = {isa = PBXBuildFile; fileRef = 7155132920D1B94800AFF98B /* DGElasticPullToRefresh */; };
+		7155133020D1BA7400AFF98B /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132B20D1BA7300AFF98B /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
+		7155133120D1BA7400AFF98B /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132C20D1BA7300AFF98B /* DGElasticPullToRefreshView.swift */; };
+		7155133220D1BA7400AFF98B /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132D20D1BA7300AFF98B /* DGElasticPullToRefreshExtensions.swift */; };
+		7155133320D1BA7400AFF98B /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132E20D1BA7400AFF98B /* DGElasticPullToRefreshLoadingView.swift */; };
+		7155133420D1BA7400AFF98B /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132F20D1BA7400AFF98B /* DGElasticPullToRefreshConstants.swift */; };
 		717A4F7120CF7B2900B44878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717A4F7020CF7B2900B44878 /* AppDelegate.swift */; };
 		717A4F7320CF7B2900B44878 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717A4F7220CF7B2900B44878 /* ViewController.swift */; };
 		717A4F7620CF7B2900B44878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717A4F7420CF7B2900B44878 /* Main.storyboard */; };
@@ -39,6 +46,13 @@
 /* Begin PBXFileReference section */
 		7155132320D0671200AFF98B /* JSONImageLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONImageLoadService.swift; sourceTree = "<group>"; };
 		7155132520D1275A00AFF98B /* JSONStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructure.swift; sourceTree = "<group>"; };
+		7155132720D19AEF00AFF98B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		7155132920D1B94800AFF98B /* DGElasticPullToRefresh */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DGElasticPullToRefresh; sourceTree = "<group>"; };
+		7155132B20D1BA7300AFF98B /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
+		7155132C20D1BA7300AFF98B /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
+		7155132D20D1BA7300AFF98B /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
+		7155132E20D1BA7400AFF98B /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
+		7155132F20D1BA7400AFF98B /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
 		717A4F6D20CF7B2900B44878 /* ImageLoadingLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoadingLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		717A4F7020CF7B2900B44878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		717A4F7220CF7B2900B44878 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +117,12 @@
 		717A4F6F20CF7B2900B44878 /* ImageLoadingLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				7155132F20D1BA7400AFF98B /* DGElasticPullToRefreshConstants.swift */,
+				7155132D20D1BA7300AFF98B /* DGElasticPullToRefreshExtensions.swift */,
+				7155132E20D1BA7400AFF98B /* DGElasticPullToRefreshLoadingView.swift */,
+				7155132B20D1BA7300AFF98B /* DGElasticPullToRefreshLoadingViewCircle.swift */,
+				7155132C20D1BA7300AFF98B /* DGElasticPullToRefreshView.swift */,
+				7155132920D1B94800AFF98B /* DGElasticPullToRefresh */,
 				717A4F7020CF7B2900B44878 /* AppDelegate.swift */,
 				717A4F7220CF7B2900B44878 /* ViewController.swift */,
 				717A4F7420CF7B2900B44878 /* Main.storyboard */,
@@ -112,6 +132,7 @@
 				717A4F7720CF7B2900B44878 /* ImageLoadingLibrary.xcdatamodeld */,
 				7155132320D0671200AFF98B /* JSONImageLoadService.swift */,
 				7155132520D1275A00AFF98B /* JSONStructure.swift */,
+				7155132720D19AEF00AFF98B /* CustomCollectionViewCell.swift */,
 			);
 			path = ImageLoadingLibrary;
 			sourceTree = "<group>";
@@ -239,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				717A4F7E20CF7B2D00B44878 /* LaunchScreen.storyboard in Resources */,
+				7155132A20D1B94900AFF98B /* DGElasticPullToRefresh in Resources */,
 				717A4F7B20CF7B2D00B44878 /* Assets.xcassets in Resources */,
 				717A4F7620CF7B2900B44878 /* Main.storyboard in Resources */,
 			);
@@ -266,8 +288,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				717A4F7320CF7B2900B44878 /* ViewController.swift in Sources */,
+				7155132820D19AEF00AFF98B /* CustomCollectionViewCell.swift in Sources */,
+				7155133120D1BA7400AFF98B /* DGElasticPullToRefreshView.swift in Sources */,
 				717A4F7920CF7B2900B44878 /* ImageLoadingLibrary.xcdatamodeld in Sources */,
+				7155133320D1BA7400AFF98B /* DGElasticPullToRefreshLoadingView.swift in Sources */,
+				7155133220D1BA7400AFF98B /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				717A4F7120CF7B2900B44878 /* AppDelegate.swift in Sources */,
+				7155133420D1BA7400AFF98B /* DGElasticPullToRefreshConstants.swift in Sources */,
+				7155133020D1BA7400AFF98B /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				7155132420D0671200AFF98B /* JSONImageLoadService.swift in Sources */,
 				7155132620D1275A00AFF98B /* JSONStructure.swift in Sources */,
 			);
