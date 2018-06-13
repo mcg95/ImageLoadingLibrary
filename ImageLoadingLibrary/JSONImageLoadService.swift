@@ -108,6 +108,15 @@ class JSONImageLoadService {
     
     func clearCache(){
         JSONImageLoadService.cache.removeAllObjects()
+        print("Cache Cleared!")
+    }
+    
+    func cacheTimer(timeInterval: Double){
+        let timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { (timer) in
+            
+            self.clearCache()
+            
+        }
     }
 
 }
