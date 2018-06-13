@@ -17,15 +17,18 @@ class JSONImageLoadService {
     var LoadedLocation = ""
     var StatusMessage = ""
     var jsonObj: [jsonRoot]? = nil
-    
+
     func getJsonObj() -> [jsonRoot]{
       
         return jsonObj!
     }
     
+    func setCacheSize(noOfObj: Int){
+        JSONImageLoadService.cache.countLimit = noOfObj
+    }
     
     func fetchJSON(jsonURL: String){
-        
+
         guard let url = URL(string: jsonURL) else {
             return
         }
@@ -103,6 +106,10 @@ class JSONImageLoadService {
         return loadedLocation
     }
     
+    func clearCache(){
+        JSONImageLoadService.cache.removeAllObjects()
+    }
+
 }
 
 
