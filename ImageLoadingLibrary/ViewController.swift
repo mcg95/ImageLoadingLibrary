@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     static let cache = NSCache<NSString, UIImage>()
     
-    let ImageService = ImageeLoadService()
+    let ImageService = ImageLoadService()
     let JSONService = JSONLoadService()
     
     var imageURLs: [String] = []
@@ -66,7 +66,6 @@ class ViewController: UIViewController {
             self.imageURLs.append(imageURL.urls.small)
 
         }
-
         imageCollectionView.dataSource = self
 
     }
@@ -89,15 +88,19 @@ extension ViewController: UICollectionViewDataSource{
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CustomCollectionViewCell{
             
             print(imageURLs[indexPath.row])
-            ImageService.getImage(withURL: URL(string: imageURLs[indexPath.row])!, completion: { (image) in
-                cell.imageView.image = image
-                print(image?.cgImage)
+            print("URL Count: ", imageURLs.count)
+                self.ImageService.getImage(withURL: URL(string: self.imageURLs[indexPath.row])!, completion: { (image) in
+                    cell.imageView.image = image
+                    print(image?.cgImage)
+                
             })
+            
             cell.clipsToBounds = true
             cell.imageView.contentMode = .scaleAspectFill
             cell.layer.cornerRadius = 15
+            
             return cell
-
+            
         }
             return UICollectionViewCell()
     }

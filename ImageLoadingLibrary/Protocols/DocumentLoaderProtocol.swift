@@ -11,12 +11,10 @@ import UIKit
 
 protocol DocumentLoaderProtocol{
     var documentObj: [documentRoot] {get}
-    static var cache: NSCache<NSString, UIImage> {get}
     var LoadedLocation: String {get}
     
-    func fetchDocument(docURL: String)
+    func fetchDocument(docURL: String) -> [documentRoot]
     func getDocumentObj() -> [documentRoot]
-    func clearCache()
-    func cacheTimer(timeInterval: Double)
+   
     
 }

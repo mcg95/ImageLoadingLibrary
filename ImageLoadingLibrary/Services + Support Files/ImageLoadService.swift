@@ -9,15 +9,10 @@
 import Foundation
 import UIKit
 
-class ImageeLoadService: FileDownloaderProtocol{
+class ImageLoadService: FileDownloaderProtocol{
     
     internal var StatusMessage: String = ""
-
-    static var cache: NSCache<NSString, UIImage>{
-        get{
-            return NSCache<NSString, UIImage>()
-        }
-    }
+    let imageCache = TimeBasedCacheService()
     
     
     func downloadImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
@@ -29,7 +24,7 @@ class ImageeLoadService: FileDownloaderProtocol{
                     downloadedImage = UIImage(data: data)
                 }
                 if downloadedImage != nil{
-                    ImageeLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+                    self.imageCache.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
                 }
             }
             downloadTask.resume()
@@ -38,7 +33,7 @@ class ImageeLoadService: FileDownloaderProtocol{
     
     func getImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
         DispatchQueue.main.async {
-            if let image = ImageeLoadService.cache.object(forKey: url.absoluteString as NSString){
+            if let image = self.imageCache.cache.object(forKey: url.absoluteString as NSString){
                 
                 self.StatusMessage = "0"
                 
@@ -46,19 +41,6 @@ class ImageeLoadService: FileDownloaderProtocol{
                 self.downloadImage(withURL: url, completion: completion)
                 self.StatusMessage = "1"
             }
-        }
-    }
-    
-    func clearCache() {
-        JSONLoadService.cache.removeAllObjects()
-        print("Cache Cleared!")
-    }
-    
-    func cacheTimer(timeInterval: Double) {
-        let timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { (timer) in
-            
-            self.clearCache()
-            
         }
     }
     

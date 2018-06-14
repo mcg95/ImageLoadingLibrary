@@ -10,20 +10,17 @@ import Foundation
 import UIKit
 
 class JSONLoadService: DocumentLoaderProtocol{
-    
-    
+
     var documentObj: [documentRoot] = []
     var LoadedLocation: String = ""
     
-    static var cache: NSCache<NSString, UIImage>{
-        get{
-            return NSCache<NSString, UIImage>()
-        }
-    }
+   
     
-    func fetchDocument(docURL: String) {
+    func fetchDocument(docURL: String) -> [documentRoot] {
+        
         guard let url = URL(string: docURL) else {
-            return
+            print("fetchDocu - URL not found")
+            return documentObj
         }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
@@ -39,23 +36,13 @@ class JSONLoadService: DocumentLoaderProtocol{
                 print(error)
             }
             }.resume()
+        return documentObj
     }
     
     func getDocumentObj() -> [documentRoot] {
         return documentObj
     }
     
-    func clearCache() {
-        JSONLoadService.cache.removeAllObjects()
-        print("Cache Cleared!")
-    }
     
-    func cacheTimer(timeInterval: Double) {
-        let timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { (timer) in
-            
-            self.clearCache()
-            
-        }
-    }
     
 }
