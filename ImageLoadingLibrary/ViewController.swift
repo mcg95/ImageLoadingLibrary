@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     static let cache = NSCache<NSString, UIImage>()
     
-    let JSONImageService = JSONImageLoadService()
+    let JSONImageService = ImageLoadService()
     
     var imageURLs: [String] = []
     let cellId = "photoCell"
@@ -20,10 +20,7 @@ class ViewController: UIViewController {
  
     
     @IBAction func refreshBtn(_ sender: Any) {
-        let json = JSONImageService.getJsonObj()
-        for imageURL in json{
-                self.imageURLs.append(imageURL.urls.regular)
-        }
+     
         imageCollectionView.reloadData()
 
         print("Refreshed!!!")
@@ -59,12 +56,13 @@ class ViewController: UIViewController {
             self.JSONImageService.fetchJSON(jsonURL: "https://pastebin.com/raw/wgkJgazE")
         }
         loadPullToRefresh()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let json = JSONImageService.getJsonObj()
         for imageURL in json{
-            self.imageURLs.append(imageURL.urls.regular)
+            self.imageURLs.append(imageURL.urls.small)
 
         }
 

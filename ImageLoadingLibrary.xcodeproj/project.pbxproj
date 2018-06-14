@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7155132420D0671200AFF98B /* JSONImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132320D0671200AFF98B /* JSONImageLoadService.swift */; };
+		7155132420D0671200AFF98B /* ImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132320D0671200AFF98B /* ImageLoadService.swift */; };
 		7155132620D1275A00AFF98B /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132520D1275A00AFF98B /* JSONStructure.swift */; };
 		7155132820D19AEF00AFF98B /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7155132720D19AEF00AFF98B /* CustomCollectionViewCell.swift */; };
 		7155132A20D1B94900AFF98B /* DGElasticPullToRefresh in Resources */ = {isa = PBXBuildFile; fileRef = 7155132920D1B94800AFF98B /* DGElasticPullToRefresh */; };
@@ -44,7 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7155132320D0671200AFF98B /* JSONImageLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONImageLoadService.swift; sourceTree = "<group>"; };
+		7155132320D0671200AFF98B /* ImageLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadService.swift; sourceTree = "<group>"; };
 		7155132520D1275A00AFF98B /* JSONStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructure.swift; sourceTree = "<group>"; };
 		7155132720D19AEF00AFF98B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		7155132920D1B94800AFF98B /* DGElasticPullToRefresh */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DGElasticPullToRefresh; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				717A4F7C20CF7B2D00B44878 /* LaunchScreen.storyboard */,
 				717A4F7F20CF7B2D00B44878 /* Info.plist */,
 				717A4F7720CF7B2900B44878 /* ImageLoadingLibrary.xcdatamodeld */,
-				7155132320D0671200AFF98B /* JSONImageLoadService.swift */,
+				7155132320D0671200AFF98B /* ImageLoadService.swift */,
 				7155132520D1275A00AFF98B /* JSONStructure.swift */,
 				7155132720D19AEF00AFF98B /* CustomCollectionViewCell.swift */,
 			);
@@ -296,7 +296,7 @@
 				717A4F7120CF7B2900B44878 /* AppDelegate.swift in Sources */,
 				7155133420D1BA7400AFF98B /* DGElasticPullToRefreshConstants.swift in Sources */,
 				7155133020D1BA7400AFF98B /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
-				7155132420D0671200AFF98B /* JSONImageLoadService.swift in Sources */,
+				7155132420D0671200AFF98B /* ImageLoadService.swift in Sources */,
 				7155132620D1275A00AFF98B /* JSONStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

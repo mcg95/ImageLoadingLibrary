@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
-
-class JSONImageLoadService {
+//Change current class name to ImageLoadService
+//add interface to help support more file types (file download - image and pdf, document loading - json)
+//
+class ImageLoadService {
     
     static let cache = NSCache<NSString, UIImage>()
     
@@ -24,11 +26,11 @@ class JSONImageLoadService {
     }
     
     func setCacheSize(noOfObj: Int){
-        JSONImageLoadService.cache.countLimit = noOfObj
+  //      JSONImageLoadService.cache.countLimit = noOfObj
     }
     
     func fetchJSON(jsonURL: String){
-
+        //move to new class.
         guard let url = URL(string: jsonURL) else {
             return
         }
@@ -72,7 +74,7 @@ class JSONImageLoadService {
                 
             }
             if downloadedImage != nil{
-                JSONImageLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+                ImageLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
             }
             
            
@@ -81,11 +83,9 @@ class JSONImageLoadService {
         }
     }
     
-   
-    
     func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
          DispatchQueue.main.async {
-        if let image = JSONImageLoadService.cache.object(forKey: url.absoluteString as NSString){
+        if let image = ImageLoadService.cache.object(forKey: url.absoluteString as NSString){
            
                 self.StatusMessage = "0"
             
@@ -116,7 +116,7 @@ class JSONImageLoadService {
     }
     
     func clearCache(){
-        JSONImageLoadService.cache.removeAllObjects()
+        ImageLoadService.cache.removeAllObjects()
         print("Cache Cleared!")
     }
     
