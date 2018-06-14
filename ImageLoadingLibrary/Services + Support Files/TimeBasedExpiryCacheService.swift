@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 
 class TimeBasedCacheService{
-    var cache = NSCache<NSString, UIImage>()
+    var cache = NSCache<NSString, AnyObject>()
     
     private var expiryTimeLengthInSeconds: Int? = nil
     
-    func setCacheSize(expiryTimeLengthInSeconds: Int){
-             cache.countLimit = expiryTimeLengthInSeconds
+    func setCacheSize(_expiryTimeLengthInSeconds: Int){
+             cache.countLimit = _expiryTimeLengthInSeconds
     }
+    
     func clearCache(){
         cache.removeAllObjects()
         print("Cache Cleared!")

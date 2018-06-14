@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 protocol DocumentLoaderProtocol{
-    var documentObj: [documentRoot] {get}
+
     var LoadedLocation: String {get}
-    
     func fetchDocument(docURL: String) -> [documentRoot]
-    func getDocumentObj() -> [documentRoot]
    
     
 }
