@@ -38,7 +38,7 @@ class JSONImageLoadService {
             guard let data = data else {
                 return
             }
-            DispatchQueue.global(qos: .userInitiated).async {
+       //     DispatchQueue.global(qos: .userInitiated).async {
             do{
                 let decoder = JSONDecoder()
                 //  decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -54,13 +54,15 @@ class JSONImageLoadService {
                 print(error)
             }
             
-            }
+    //        }
             }.resume()
         
         
     }
     
     func downloadImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
+        DispatchQueue.main.async {
+        
         let downloadTask = URLSession.shared.dataTask(with: url) { (data, responseURL, err) in
             var downloadedImage:UIImage?
             
@@ -73,26 +75,27 @@ class JSONImageLoadService {
                 JSONImageLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
             }
             
-            DispatchQueue.main.async {
-                // completion(downloadedImage)
-            }
+           
         }
         downloadTask.resume()
+        }
     }
     
    
     
     func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
+         DispatchQueue.main.async {
         if let image = JSONImageLoadService.cache.object(forKey: url.absoluteString as NSString){
-            DispatchQueue.main.async {
+           
                 self.StatusMessage = "0"
-            }
+            
             completion(image)
             
         }else{
-            downloadImage(withURL: url, completion: completion)
-            DispatchQueue.main.async {
+            self.downloadImage(withURL: url, completion: completion)
+            
                 self.StatusMessage = "1"
+            
             }
         }
     }
