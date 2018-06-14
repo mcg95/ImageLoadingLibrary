@@ -12,15 +12,16 @@ import UIKit
 //Change current class name to ImageLoadService
 //add interface to help support more file types (file download - image and pdf, document loading - json)
 //
+/*
 class ImageLoadService {
     
     static let cache = NSCache<NSString, UIImage>()
     
     var LoadedLocation = ""
     var StatusMessage = ""
-    var jsonObj: [jsonRoot] = []
+    var jsonObj: [documentRoot] = []
 
-    func getJsonObj() -> [jsonRoot]{
+    func getJsonObj() -> [documentRoot]{
       
         return jsonObj
     }
@@ -45,7 +46,7 @@ class ImageLoadService {
                 let decoder = JSONDecoder()
                 //  decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                    let json = try decoder.decode([jsonRoot].self, from: data)
+                    let json = try decoder.decode([documentRoot].self, from: data)
                     self.jsonObj = json
                 
                
@@ -74,7 +75,7 @@ class ImageLoadService {
                 
             }
             if downloadedImage != nil{
-                ImageLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+                ImageeLoadService.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
             }
             
            
@@ -85,7 +86,7 @@ class ImageLoadService {
     
     func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()){
          DispatchQueue.main.async {
-        if let image = ImageLoadService.cache.object(forKey: url.absoluteString as NSString){
+        if let image = ImageeLoadService.cache.object(forKey: url.absoluteString as NSString){
            
                 self.StatusMessage = "0"
             
@@ -116,7 +117,7 @@ class ImageLoadService {
     }
     
     func clearCache(){
-        ImageLoadService.cache.removeAllObjects()
+        ImageeLoadService.cache.removeAllObjects()
         print("Cache Cleared!")
     }
     
@@ -130,5 +131,5 @@ class ImageLoadService {
 
 
 }
-
+*/
 

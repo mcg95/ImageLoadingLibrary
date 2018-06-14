@@ -11,7 +11,8 @@ class ViewController: UIViewController {
 
     static let cache = NSCache<NSString, UIImage>()
     
-    let JSONImageService = ImageLoadService()
+    let ImageService = ImageeLoadService()
+    let JSONService = JSONLoadService()
     
     var imageURLs: [String] = []
     let cellId = "photoCell"
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
         
         imageCollectionView.dg_addPullToRefreshWithActionHandler({
   
-            print("Loaded From: ", self.JSONImageService.returnLoadedFrom())
+            print("Loaded From: ", self.ImageService.returnLoadedFrom())
             
             self.imageCollectionView.reloadData()
             self.imageCollectionView.dg_stopLoading()
@@ -53,14 +54,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         DispatchQueue.global(qos: .userInitiated).async {
-            self.JSONImageService.fetchJSON(jsonURL: "https://pastebin.com/raw/wgkJgazE")
+            self.JSONService.fetchDocument(docURL: "https://pastebin.com/raw/wgkJgazE")
         }
         loadPullToRefresh()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let json = JSONImageService.getJsonObj()
+        let json = JSONService.getDocumentObj()
         for imageURL in json{
             self.imageURLs.append(imageURL.urls.small)
 
@@ -86,11 +87,11 @@ extension ViewController: UICollectionViewDataSource{
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CustomCollectionViewCell{
-    
-           
-            JSONImageService.getImage(withURL: URL(string: imageURLs[indexPath.row])!, completion: { (image) in
+            
+            print(imageURLs[indexPath.row])
+            ImageService.getImage(withURL: URL(string: imageURLs[indexPath.row])!, completion: { (image) in
                 cell.imageView.image = image
-                
+                print(image?.cgImage)
             })
             cell.clipsToBounds = true
             cell.imageView.contentMode = .scaleAspectFill
