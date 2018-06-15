@@ -11,6 +11,29 @@ import XCTest
 
 class ImageLoadingLibraryTests: XCTestCase {
     
+    func testJsonParsing(){
+        var jsonService = JSONLoadService()
+        var obj = [documentRoot]()
+        var url: String? = nil
+        jsonService.fetchDocument(docURL: "https://images.unsplash.com/photo-1464550883968-cec281c19761")
+        obj = jsonService.getDocumentObj()
+        
+               
+        XCTAssertNotNil(obj)
+        
+    }
     
-    
+    func testImageDownload(){
+        var imageDownloadService = ImageLoadService()
+        var obj = [documentRoot]()
+        var thisImage: UIImage? = nil
+        
+        imageDownloadService.downloadImage(withURL: URL(string: "https://images.unsplash.com/photo-1464550883968-cec281c19761")!) { (image) in
+            thisImage = image
+        }
+            XCTAssertNotNil(thisImage)
+        
+        
+
+    }
 }

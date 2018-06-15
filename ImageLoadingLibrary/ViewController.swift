@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let JSONService = JSONLoadService()
     
     var imageURLs: [String] = []
+    var images: [UIImage] = []
     let cellId = "photoCell"
 
     @IBOutlet weak var imageCollectionView: UICollectionView!
@@ -35,7 +36,6 @@ class ViewController: UIViewController {
         
         imageCollectionView.dg_addPullToRefreshWithActionHandler({
   
-            print("Loaded From: ", self.ImageService.returnLoadedFrom())
             
             self.imageCollectionView.reloadData()
             self.imageCollectionView.dg_stopLoading()
@@ -75,34 +75,34 @@ class ViewController: UIViewController {
         
         // Dispose of any resources that can be recreated.
     }
-
-   
     
 }
+
 extension ViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+        
         return (imageURLs.count)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CustomCollectionViewCell{
             
-            print(imageURLs[indexPath.row])
-            print("URL Count: ", imageURLs.count)
-                self.ImageService.getImage(withURL: URL(string: self.imageURLs[indexPath.row])!, completion: { (image) in
+            //print(imageURLs[indexPath.row])
+            //print("URL Count: ", imageURLs.count)
+            self.ImageService.getImage(withURL: URL(string: self.imageURLs[indexPath.row])!, completion: { (image) in
+                DispatchQueue.main.async {
                     cell.imageView.image = image
-                    print(image?.cgImage)
+                }
                 
             })
             
             cell.clipsToBounds = true
             cell.imageView.contentMode = .scaleAspectFill
             cell.layer.cornerRadius = 15
-            
             return cell
             
         }
-            return UICollectionViewCell()
+
+        return UICollectionViewCell()
     }
     
 }

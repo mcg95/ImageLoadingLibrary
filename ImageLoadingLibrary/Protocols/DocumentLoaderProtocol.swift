@@ -11,8 +11,7 @@ import UIKit
 
 protocol DocumentLoaderProtocol{
 
-    var LoadedLocation: String {get}
-    func fetchDocument(docURL: String) -> [documentRoot]
+    func fetchDocument(docURL: String)
    
     
 }

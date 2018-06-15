@@ -12,15 +12,12 @@ import UIKit
 class JSONLoadService: DocumentLoaderProtocol{
 
     var documentObj: [documentRoot] = []
-    var LoadedLocation: String = ""
     
-   
-    
-    func fetchDocument(docURL: String) -> [documentRoot] {
+    func fetchDocument(docURL: String) {
         
         guard let url = URL(string: docURL) else {
             print("fetchDocu - URL not found")
-            return documentObj
+            return
         }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
@@ -38,7 +35,6 @@ class JSONLoadService: DocumentLoaderProtocol{
                 print(error)
                 }}
             }.resume()
-        return documentObj
     }
     
     func getDocumentObj() -> [documentRoot] {

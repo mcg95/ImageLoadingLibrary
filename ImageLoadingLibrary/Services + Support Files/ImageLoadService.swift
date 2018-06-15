@@ -24,6 +24,7 @@ class ImageLoadService: FileDownloaderProtocol{
                 }
                 if downloadedImage != nil{
                     self.imageCache.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+                    completion(downloadedImage)
                 }
             }
             downloadTask.resume()
@@ -41,17 +42,5 @@ class ImageLoadService: FileDownloaderProtocol{
             }
         
     }
-    
-    func returnLoadedFrom() -> (String) {
-        var loadedLocation = ""
-        let statusMessage = StatusMessage
-        if statusMessage == "1"{
-            loadedLocation = "Image Loaded from Web!"
-        }else if statusMessage == "0"{
-            loadedLocation = "Image Loaded from Cache!"
-        }
-        return loadedLocation
-    }
-    
     
 }
