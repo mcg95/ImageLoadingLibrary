@@ -26,6 +26,8 @@ class JSONLoadService: DocumentLoaderProtocol{
             guard let data = data else {
                 return
             }
+            DispatchQueue.global(qos: .userInitiated).async {
+
             do{
                 let decoder = JSONDecoder()
                 //  decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -34,7 +36,7 @@ class JSONLoadService: DocumentLoaderProtocol{
             }
             catch{
                 print(error)
-            }
+                }}
             }.resume()
         return documentObj
     }

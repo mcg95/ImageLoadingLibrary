@@ -16,7 +16,6 @@ class ImageLoadService: FileDownloaderProtocol{
     
     
     func downloadImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
-        DispatchQueue.main.async {
             let downloadTask = URLSession.shared.dataTask(with: url) { (data, responseURL, err) in
                 var downloadedImage:UIImage?
                 
@@ -28,11 +27,10 @@ class ImageLoadService: FileDownloaderProtocol{
                 }
             }
             downloadTask.resume()
-        }
+        
     }
     
     func getImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
-        DispatchQueue.main.async {
             if let image = self.imageCache.cache.object(forKey: url.absoluteString as NSString){
                 
                 self.StatusMessage = "0"
@@ -41,7 +39,7 @@ class ImageLoadService: FileDownloaderProtocol{
                 self.downloadImage(withURL: url, completion: completion)
                 self.StatusMessage = "1"
             }
-        }
+        
     }
     
     func returnLoadedFrom() -> (String) {
