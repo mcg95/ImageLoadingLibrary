@@ -1,6 +1,4 @@
-# ImageLoadingLibrary
-
-Data Loading Library
+# DataLoadingLibrary
 
 -JSON Data Retrieval and storage. (Ability to provide support for other file types such as XML)
 
