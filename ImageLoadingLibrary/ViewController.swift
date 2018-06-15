@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var imageURLs: [String] = []
     var images: [UIImage] = []
     let cellId = "photoCell"
-    var systemVersion = UIDevice.current.systemVersion
+    let floatSysVersion = (UIDevice.current.systemVersion as NSString).floatValue
 
     
     @IBOutlet weak var imageCollectionView: UICollectionView!
@@ -44,7 +44,6 @@ class ViewController: UIViewController {
         
         imageCollectionView.dg_setPullToRefreshFillColor(UIColor.yellow)
         imageCollectionView.dg_setPullToRefreshBackgroundColor(UIColor.red)
-        let floatVersion = (UIDevice.current.systemVersion as NSString).floatValue
 
         
     }
@@ -58,7 +57,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if floatVersion >= 11.0{
+        if floatSysVersion >= 11.0{
             if #available(iOS 11.0, *) {
                 self.navigationController?.navigationBar.prefersLargeTitles = true
                 self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 20)!]
