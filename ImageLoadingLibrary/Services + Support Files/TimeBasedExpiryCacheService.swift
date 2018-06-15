@@ -12,10 +12,12 @@ import UIKit
 class TimeBasedCacheService{
     var cache = NSCache<NSString, AnyObject>()
     
+    
     private var expiryTimeLengthInSeconds: Int? = nil
     
     func setCacheSize(_expiryTimeLengthInSeconds: Int){
              cache.countLimit = _expiryTimeLengthInSeconds
+        
     }
     
     func clearCache(){

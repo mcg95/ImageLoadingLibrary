@@ -14,12 +14,13 @@ class ImageLoadingLibraryTests: XCTestCase {
     func testJsonParsing(){
         var jsonService = JSONLoadService()
         var obj = [documentRoot]()
-        var url: String? = nil
+
         jsonService.fetchDocument(docURL: "https://images.unsplash.com/photo-1464550883968-cec281c19761")
-        obj = jsonService.getDocumentObj()
-        
-               
-        XCTAssertNotNil(obj)
+
+        print("JSON Count:", jsonData)
+
+        //print("Count", obj.count)
+        XCTAssertNotNil(jsonData)
         
     }
     

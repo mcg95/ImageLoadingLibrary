@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBAction func refreshBtn(_ sender: Any) {
      
         imageCollectionView.reloadData()
+        print(JSONService.getDocumentObj())
 
         print("Refreshed!!!")
 

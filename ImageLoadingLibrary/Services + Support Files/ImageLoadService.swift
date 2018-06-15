@@ -11,14 +11,17 @@ import UIKit
 
 class ImageLoadService: FileDownloaderProtocol{
     
-    internal var StatusMessage: String = ""
+    //print statements are used for informing developers what is the reason for any crash that occurs and debugging purposes
+    
     let imageCache = TimeBasedCacheService()
     
     
     func downloadImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
             let downloadTask = URLSession.shared.dataTask(with: url) { (data, responseURL, err) in
                 var downloadedImage:UIImage?
-                
+                if err != nil{
+                    print("Error: ", err?.localizedDescription)
+                }else{
                 if let data = data{
                     downloadedImage = UIImage(data: data)
                 }
@@ -27,18 +30,19 @@ class ImageLoadService: FileDownloaderProtocol{
                     completion(downloadedImage)
                 }
             }
+        }
             downloadTask.resume()
         
     }
     
     func getImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
             if let image = self.imageCache.cache.object(forKey: url.absoluteString as NSString){
-                
-                self.StatusMessage = "0"
+                print("Loaded from Cache")
                 
             }else{
                 self.downloadImage(withURL: url, completion: completion)
-                self.StatusMessage = "1"
+                print("Downloaded from Internet")
+
             }
         
     }

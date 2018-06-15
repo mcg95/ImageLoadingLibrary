@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol FileDownloaderProtocol{
+    //While this function is only for downloading images, Generics in Swift can be used to define a method that will be able to download any type of data but the data manipulation must be done by the user.
     //retrieves image from the web
     func downloadImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->())
     

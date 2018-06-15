@@ -11,6 +11,8 @@ import UIKit
 
 class JSONLoadService: DocumentLoaderProtocol{
 
+     //print statements are used for informing developers what is the reason for any crash that occurs and debugging purposes
+    
     var documentObj: [documentRoot] = []
     
     func fetchDocument(docURL: String) {
@@ -23,10 +25,14 @@ class JSONLoadService: DocumentLoaderProtocol{
             guard let data = data else {
                 return
             }
+            if error != nil{
+                print("Error: ", error?.localizedDescription)
+            }else{
             DispatchQueue.global(qos: .userInitiated).async {
 
             do{
                 let decoder = JSONDecoder()
+                //convertFromSnakeCase must only be used if the JSONStructure variables are not named exactly as in the JSON.
                 //  decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let json = try decoder.decode([documentRoot].self, from: data)
                 self.documentObj = json
@@ -34,10 +40,13 @@ class JSONLoadService: DocumentLoaderProtocol{
             catch{
                 print(error)
                 }}
+            }
             }.resume()
     }
     
     func getDocumentObj() -> [documentRoot] {
+        //print("Count", documentObj.count)
+
         return documentObj
     }
     

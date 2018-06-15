@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol DocumentLoaderProtocol{
-
+    
+    //fetches data from any provided URL. Currently only decodes Json. 
     func fetchDocument(docURL: String)
-   
     
 }
