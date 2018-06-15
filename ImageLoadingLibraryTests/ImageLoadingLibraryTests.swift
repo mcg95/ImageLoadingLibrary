@@ -11,26 +11,40 @@ import XCTest
 
 class ImageLoadingLibraryTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+   func testJsonParsing(){
+        var jsonService = JSONLoadService()
+        var obj = [documentRoot]()
+    
+    DispatchQueue.global(qos: .background).async {
+        jsonService.fetchDocument(docURL: "http://pastebin.com/raw/wgkJgazE")
+
+    }
+    DispatchQueue.main.async {
+        obj = jsonService.getDocumentObj()
+
+        print("Object Count: ", obj.count)
+
+    }
+    XCTAssertNotNil(obj)
+
+        //print("Count", obj.count)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testImageDownloading(){
+        var jsonService = ImageLoadService()
+        var imageDownloaded: UIImage? = nil
+        DispatchQueue.global(qos: .background).async {
+            
+            jsonService.downloadImage(withURL: URL(string: "https://images.unsplash.com/photo-1464550883968-cec281c19761")!) { (image) in
+                imageDownloaded = image
+                print("Access identifier: ", image?.accessibilityIdentifier)
+
         }
+        }
+        print("Access identifier: ", imageDownloaded?.accessibilityIdentifier)
+
+        XCTAssertNotNil(imageDownloaded?.cgImage)
+
     }
     
 }
