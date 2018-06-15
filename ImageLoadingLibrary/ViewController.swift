@@ -8,23 +8,23 @@
 
 import UIKit
 class ViewController: UIViewController {
-
-    static let cache = NSCache<NSString, UIImage>()
     
     let ImageService = ImageLoadService()
     let JSONService = JSONLoadService()
-    
+    let cacheService = CacheService()
     var imageURLs: [String] = []
     var images: [UIImage] = []
     let cellId = "photoCell"
+    var systemVersion = UIDevice.current.systemVersion
 
+    
     @IBOutlet weak var imageCollectionView: UICollectionView!
  
+    @IBOutlet weak var navBar: UINavigationItem!
     
     @IBAction func refreshBtn(_ sender: Any) {
      
         imageCollectionView.reloadData()
-        print(JSONService.getDocumentObj())
 
         print("Refreshed!!!")
 
@@ -37,13 +37,16 @@ class ViewController: UIViewController {
         
         imageCollectionView.dg_addPullToRefreshWithActionHandler({
   
-            
+        
             self.imageCollectionView.reloadData()
             self.imageCollectionView.dg_stopLoading()
         }, loadingView: loadingView)
         
         imageCollectionView.dg_setPullToRefreshFillColor(UIColor.yellow)
         imageCollectionView.dg_setPullToRefreshBackgroundColor(UIColor.red)
+        let floatVersion = (UIDevice.current.systemVersion as NSString).floatValue
+
+        
     }
     
     deinit {
@@ -54,21 +57,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if floatVersion >= 11.0{
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.prefersLargeTitles = true
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 20)!]
+            } else {
+                // Fallback on earlier versions
+                print("Sorry! No Large Tiles for iOS < 11.0")
+                
+            }
+        }
         DispatchQueue.global(qos: .userInitiated).async {
             self.JSONService.fetchDocument(docURL: "https://pastebin.com/raw/wgkJgazE")
         }
         loadPullToRefresh()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let json = JSONService.getDocumentObj()
-        for imageURL in json{
-            self.imageURLs.append(imageURL.urls.small)
-
+            let json = self.JSONService.getDocumentObj()
+            for imageURL in json{
+                self.imageURLs.append(imageURL.urls.small)
+                
         }
+        
         imageCollectionView.dataSource = self
-
+        
     }
     
     override func didReceiveMemoryWarning() {

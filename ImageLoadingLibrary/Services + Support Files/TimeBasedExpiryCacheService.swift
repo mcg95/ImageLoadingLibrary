@@ -9,15 +9,21 @@
 import Foundation
 import UIKit
 
-class TimeBasedCacheService{
+class CacheService{
     var cache = NSCache<NSString, AnyObject>()
-    
     
     private var expiryTimeLengthInSeconds: Int? = nil
     
     func setCacheSize(_expiryTimeLengthInSeconds: Int){
              cache.countLimit = _expiryTimeLengthInSeconds
-        
+    }
+    
+    func maxCacheCost(maxCost: Int){
+        cache.totalCostLimit = maxCost
+    }
+    
+    func evictDiscardedDataAutomaticall(autoDiscardData: Bool){
+        cache.evictsObjectsWithDiscardedContent = autoDiscardData
     }
     
     func clearCache(){

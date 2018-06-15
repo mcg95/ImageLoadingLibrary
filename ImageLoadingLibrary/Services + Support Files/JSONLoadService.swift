@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 class JSONLoadService: DocumentLoaderProtocol{
+   
 
      //print statements are used for informing developers what is the reason for any crash that occurs and debugging purposes
     
     var documentObj: [documentRoot] = []
-    
-    func fetchDocument(docURL: String) {
+    func fetchDocument(docURL: String){
+        
         
         guard let url = URL(string: docURL) else {
             print("fetchDocu - URL not found")
@@ -28,20 +29,21 @@ class JSONLoadService: DocumentLoaderProtocol{
             if error != nil{
                 print("Error: ", error?.localizedDescription)
             }else{
-            DispatchQueue.global(qos: .userInitiated).async {
-
-            do{
-                let decoder = JSONDecoder()
-                //convertFromSnakeCase must only be used if the JSONStructure variables are not named exactly as in the JSON.
-                //  decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let json = try decoder.decode([documentRoot].self, from: data)
-                self.documentObj = json
-            }
-            catch{
-                print(error)
-                }}
+                DispatchQueue.global(qos: .userInitiated).async {
+                    
+                    do{
+                        let decoder = JSONDecoder()
+                        //convertFromSnakeCase must only be used if the JSONStructure variables are not named exactly as in the JSON.
+                        //  decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        let json = try decoder.decode([documentRoot].self, from: data)
+                        self.documentObj = json
+                    }
+                    catch{
+                        print(error)
+                    }}
             }
             }.resume()
+        
     }
     
     func getDocumentObj() -> [documentRoot] {

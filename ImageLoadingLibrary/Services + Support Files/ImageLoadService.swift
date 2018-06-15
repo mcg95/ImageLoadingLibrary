@@ -13,10 +13,11 @@ class ImageLoadService: FileDownloaderProtocol{
     
     //print statements are used for informing developers what is the reason for any crash that occurs and debugging purposes
     
-    let imageCache = TimeBasedCacheService()
+    let imageCache = CacheService()
     
     
     func downloadImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {
+          DispatchQueue.global(qos: .background).async {
             let downloadTask = URLSession.shared.dataTask(with: url) { (data, responseURL, err) in
                 var downloadedImage:UIImage?
                 if err != nil{
@@ -24,6 +25,8 @@ class ImageLoadService: FileDownloaderProtocol{
                 }else{
                 if let data = data{
                     downloadedImage = UIImage(data: data)
+                    completion(downloadedImage)
+
                 }
                 if downloadedImage != nil{
                     self.imageCache.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
@@ -32,7 +35,7 @@ class ImageLoadService: FileDownloaderProtocol{
             }
         }
             downloadTask.resume()
-        
+        }
     }
     
     func getImage(withURL url: URL, completion: @escaping (UIImage?) -> ()) {

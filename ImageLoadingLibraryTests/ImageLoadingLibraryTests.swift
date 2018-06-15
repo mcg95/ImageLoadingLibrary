@@ -11,30 +11,40 @@ import XCTest
 
 class ImageLoadingLibraryTests: XCTestCase {
     
-    func testJsonParsing(){
+   func testJsonParsing(){
         var jsonService = JSONLoadService()
         var obj = [documentRoot]()
+    
+    DispatchQueue.global(qos: .background).async {
+        jsonService.fetchDocument(docURL: "http://pastebin.com/raw/wgkJgazE")
 
-        jsonService.fetchDocument(docURL: "https://images.unsplash.com/photo-1464550883968-cec281c19761")
+    }
+    DispatchQueue.main.async {
+        obj = jsonService.getDocumentObj()
 
-        print("JSON Count:", jsonData)
+        print("Object Count: ", obj.count)
+
+    }
+    XCTAssertNotNil(obj)
 
         //print("Count", obj.count)
-        XCTAssertNotNil(jsonData)
-        
     }
     
-    func testImageDownload(){
-        var imageDownloadService = ImageLoadService()
-        var obj = [documentRoot]()
-        var thisImage: UIImage? = nil
-        
-        imageDownloadService.downloadImage(withURL: URL(string: "https://images.unsplash.com/photo-1464550883968-cec281c19761")!) { (image) in
-            thisImage = image
+    func testImageDownloading(){
+        var jsonService = ImageLoadService()
+        var imageDownloaded: UIImage? = nil
+        DispatchQueue.global(qos: .background).async {
+            
+            jsonService.downloadImage(withURL: URL(string: "https://images.unsplash.com/photo-1464550883968-cec281c19761")!) { (image) in
+                imageDownloaded = image
+                print("Access identifier: ", image?.accessibilityIdentifier)
+
         }
-            XCTAssertNotNil(thisImage)
-        
-        
+        }
+        print("Access identifier: ", imageDownloaded?.accessibilityIdentifier)
+
+        XCTAssertNotNil(imageDownloaded?.cgImage)
 
     }
+    
 }
