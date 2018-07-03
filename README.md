@@ -10,4 +10,5 @@
 
 Using Generics in Swift, the library can be updated that will allow the implementation of supporting multiple file types with ease.
 
+Created by: Mewan Chathuranga
 
