@@ -1,6 +1,7 @@
 # DataLoadingLibrary
 
 -JSON Data Retrieval and storage. (Ability to provide support for other file types such as XML)
+=======
 
 -Image Download via URL link retrieved from JSON. (Can provide support for other file types with few lines of code)
 
